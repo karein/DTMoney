@@ -1,7 +1,7 @@
 import Modal from 'react-modal';
 import { FormEvent, useState } from 'react';
 
-import { api } from '../../services/api';
+import { useTransactions } from '../../hooks/useTransactions';
 
 import closeImg from '../../assets/close.svg';
 import incomeImg from '../../assets/income.svg';
@@ -17,17 +17,23 @@ interface NewTransactionModalProps {
 }
 
 export function NewTransactionModal({ isOpen, onRequestClose }: NewTransactionModalProps) {
-  const [value, setValue] = useState(0);
+  const { createTransaction } = useTransactions();
+
+  const [amount, setAmount] = useState(0);
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
   const [type, setType] = useState<'deposit' | 'withdraw'>('deposit');
 
-  const handleCreateNewTransaction = (event: FormEvent) => {
+  async function handleCreateNewTransaction(event: FormEvent) {
     event.preventDefault();
 
-    const data = { title, value, category, type }
+    await createTransaction({ title, amount, category, type })
 
-    api.post('/transactions', data)
+    setTitle('');
+    setCategory('');
+    setAmount(0);
+    setType('deposit');
+    onRequestClose()
   }
 
 
@@ -38,7 +44,6 @@ export function NewTransactionModal({ isOpen, onRequestClose }: NewTransactionMo
       overlayClassName="react-modal-overlay"
       className="react-modal-content"
     >
-
       <button
         type="button"
         onClick={onRequestClose}
@@ -55,8 +60,8 @@ export function NewTransactionModal({ isOpen, onRequestClose }: NewTransactionMo
         <input
           type="number"
           placeholder='Valor'
-          value={value}
-          onChange={event => setValue(Number(event.target.value))}
+          value={amount}
+          onChange={event => setAmount(Number(event.target.value))}
         />
 
         <TransactionTypeContainer>
