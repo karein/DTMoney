@@ -1,0 +1,5 @@
+- Simular API
+  - LIBS
+    - json-server
+    - Mirage JS 
+    - msw
