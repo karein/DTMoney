@@ -32,6 +32,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body{
+    height: 100vh;
     background: var(--background);
     -webkit-font-smoothing: antialiased; //mellhora nitidez das fonts
   }
