@@ -1,14 +1,14 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
-  background: ${props => props.theme['gray-900']};
-  padding:  2.5rem 0 7.5rem;
+  background: ${(props) => props.theme['gray-900']};
+  padding: 2.5rem 0 7.5rem;
 `
 export const HeaderContent = styled.div`
   width: 100%;
   max-width: 1120px; // se a tela for menor que 1120 ela vai ter 100% da tela, se for maior ele imita 1120
-  margin:  0 auto; // para centralizar
-  padding: 0 1.5rem;// caso a tela seja pequena, não ficar grudado na laterais
+  margin: 0 auto; // para centralizar
+  padding: 0 1.5rem; // caso a tela seja pequena, não ficar grudado na laterais
 
   display: flex;
   align-items: center;
@@ -18,15 +18,15 @@ export const HeaderContent = styled.div`
 export const NewTransactionButton = styled.button`
   height: 50px;
   border: 0;
-  background: ${props => props.theme["green-500"]};
-  color: ${props => props.theme.white};
+  background: ${(props) => props.theme['green-500']};
+  color: ${(props) => props.theme.white};
   font-weight: bold;
   padding: 0 1.25rem;
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.2s;
 
-  &:hover{
-    background: ${props => props.theme["green-700"]};
+  &:hover {
+    background: ${(props) => props.theme['green-700']};
   }
 `
